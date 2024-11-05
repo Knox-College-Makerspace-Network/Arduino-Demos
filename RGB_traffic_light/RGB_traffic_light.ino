@@ -36,8 +36,9 @@ class RGBLed {
 
 
 //setup leds on their respective pins
-RGBLed led0(A0, A1, A2);
-RGBLed led1(A5,A4 , A3);
+
+RGBLed led0(6,5,3);
+RGBLed led1(11,10,9);
 //holds the traffic state
 int state = 0;
 
@@ -57,21 +58,16 @@ void loop() {
   if (Serial.available() > 0) {
       String command = Serial.readStringUntil('\n');  // Read input until newline
       command.trim();  // Remove any trailing newline or space characters
-
-      if (command == "random") {
-        led0.setColor(random(0, 256), random(0, 256), random(0, 256));
-        led1.setColor(random(0, 256), random(0, 256), random(0, 256));
-      }
-      else if (command == "swap") {
+      if (command == "swap") {
 
         if (state == 1){
           state = 0;
-          led1.setColor(255, 255, 0);
+          led1.setColor(255, 100, 0);
           delay(1000);
 
         }else if(state == 0){
           state = 1;
-          led0.setColor(255, 255, 0);
+          led0.setColor(255,100, 0);
           delay(1000);
 
         }
